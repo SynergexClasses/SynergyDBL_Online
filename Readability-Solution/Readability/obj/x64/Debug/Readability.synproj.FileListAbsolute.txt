@@ -1,0 +1,8 @@
+C:\Users\liz.wilson\source\repos\Readability\obj\x64\Debug\Readability.synproj.CoreCompileInputs.cache
+C:\Users\liz.wilson\source\repos\Readability\Debug\x64\Readability.dbr
+C:\Users\liz.wilson\source\repos\Readability\Debug\x64\readability.dbp
+C:\Users\liz.wilson\source\repos\Readability\obj\x64\Debug\Readability.dbr
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\Debug\x64\Readability.dbr
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\Debug\x64\readability.dbp
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\obj\x64\Debug\Readability.synproj.CoreCompileInputs.cache
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\obj\x64\Debug\Readability.dbr

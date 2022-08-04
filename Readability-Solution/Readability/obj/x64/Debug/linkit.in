@@ -1,0 +1,1 @@
+-d -o Readability.dbr -qrntcompat=12010100   "Readability.dbo"
