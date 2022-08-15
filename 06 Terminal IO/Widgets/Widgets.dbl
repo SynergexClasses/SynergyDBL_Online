@@ -1,0 +1,72 @@
+
+;;; <summary>
+;;; The main entry point for the application.
+;;; </summary>
+main Widgets
+	 .include "WND:windows.def"
+
+    record header
+        oh_number       ,d6         ;Order number
+        oh_customer     ,a8         ;Customer account code
+        oh_date         ,d8         ;Order date
+        oh_contact      ,a20        ;Order placed by
+        oh_salesrep     ,d4         ;Sales rep code
+    endrecord
+
+    structure strDetail
+        od_number       ,d6         ;Order number
+        od_item         ,d4         ;Item number
+        od_part         ,a10        ;Part number
+        od_qty          ,d5         ;Quantity ordered
+        od_unit_price   ,d8.2       ;Unit price
+    endstructure
+
+    record
+        detail          ,strDetail  ;Order detail structure field
+    endrecord
+
+    record
+        system_date     ,a20
+          year          ,d4 @system_date
+          month         ,d2 @system_date+4
+          day           ,d2 @system_date+6
+    endrecord
+
+    record
+        term_ch          ,i4 ,1      ;Terminal channel number
+        char            ,a1         ;Temporary variable used to accept key press
+        msgid           ,i4         ;Message window ID
+    endrecord
+
+    proc
+
+    call startup
+    call process
+    call shutdown
+
+    stop
+
+
+STARTUP, 
+
+	system_date = %datetime                         ;Assign current date
+
+	open(term_ch,i,"tt:")                            ;Open terminal channel
+	xcall flags(7004020,1)                          ;Setup environment
+	display(term_ch,$scr_clr(screen))                ;Clear screen
+
+PROCESS,
+	display(term_ch, $SCR_MOV(0, 9), "Welcome")
+	display(term_ch, $SCR_MOV(5, 0), system_date)
+	
+	accept(term_ch, char)
+	
+
+SHUTDOWN,
+	display(term_ch, $SCR_CLR(Screen))
+	close(term_ch)
+	
+
+stop
+
+endmain
