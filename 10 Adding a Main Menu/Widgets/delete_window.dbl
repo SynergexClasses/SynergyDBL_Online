@@ -1,0 +1,15 @@
+;;; <summary>
+;;; Delete a specified Synergy Window
+;;; </summary>
+;;; <param name="w_id">ID of the Window to be deleted</param>
+subroutine DELETE_WINDOW
+	required inout w_id ,i
+	endparams
+
+	.include "WND:windows.def"
+
+proc
+	; delete the window
+	xcall w_proc(WP_DELETE, w_id)
+	xreturn
+endsubroutine

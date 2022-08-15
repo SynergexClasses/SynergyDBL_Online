@@ -1,0 +1,24 @@
+;;; <summary>
+;;; Displays Text in a Synergy Window
+;;; </summary>
+;;; <param name="w_id">ID of the window to display text on</param>
+;;; <param name="w_row">Window row to display text at</param>
+;;; <param name="w_col">Window column to display text at</param>
+;;; <param name="text">Text to be displayed</param>
+subroutine DISPLAY_TEXT
+	; 4 args
+	required inout w_id ,i
+	required in w_row ,n
+	required in w_col ,n
+	required in text ,a
+	endparams
+
+	.include "WND:windows.def"
+
+proc
+	; display some text in window
+	xcall w_disp(w_id, WD_POS, w_row, w_col, text)
+
+	xreturn
+
+endsubroutine

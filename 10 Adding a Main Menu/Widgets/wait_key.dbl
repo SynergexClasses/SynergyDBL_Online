@@ -1,0 +1,25 @@
+;;; <summary>
+;;; Accepts a single key stroke at a specified position in a specified Synergy window, returns key pressed to the calling routine
+;;; </summary>
+;;; <param name="w_id">Window ID of the window to be used for input</param>
+;;; <param name="in_row">Row position where input should take place</param>
+;;; <param name="in_col">Column position where input should take place</param>
+;;; <param name="in_char">Key pressed (returned to calling routine)</param>
+subroutine WAIT_KEY
+	required inout w_id ,i
+	required in in_row ,n
+	required in in_col ,n
+	required inout in_char ,a
+	endparams
+
+	.include "WND:windows.def"
+
+proc
+	xcall w_disp(w_id, WD_MOVE, in_row, in_col)
+	; allow the user to acknowledge
+	xcall w_disp(w_id, WD_READS, in_char)
+	
+	xreturn
+
+
+endsubroutine

@@ -1,0 +1,103 @@
+
+;;; <summary>
+;;; The main entry point for the application.
+;;; </summary>
+main Widgets
+
+	.include "WND:windows.def"
+	.include "INC:header.def" 
+	.include "INC:detail.def"
+
+	record
+		ttchn ,i4 ,1 ; Terminal Channel Number
+		var_input ,a1 ; Input for menu options
+		menu_wndid ,i4 ; Main Menu Window ID
+		
+		header_wndid3 ,i4 ; Order Header Window ID
+		detail_wndid4 ,i4 ; Order Detail Window ID
+
+		wndid5 ,i4 ; View Header
+		wndid6 ,i4 ; Order Details
+		chn1 ,i4 ; ISAM files - header
+		chn2 ,i4 ; ISAM files - detail
+
+		message ,a28 
+		height ,i2 ,15
+		width ,i2 ,30
+		row ,i2 ,9
+		col ,i2 ,30
+
+		order_option ,a1
+		menu ,i1 ,1
+		i  ,d1 ; increment for the for loop
+
+		handle ,i4 ; memory handle
+		nmalloc ,i4 ; max stored
+		nmloaded ,i4 ; currently stored
+
+		wndid2 ,i4 ; Create Message
+		wndtitle ,a20
+		wndname1 ,a7, "Chose 1"
+		wndname2 ,a7 ,"Chose 2" 
+
+
+	endrecord
+
+
+proc
+	call STARTUP
+	call PROCESS
+	call SHUTDOWN
+	stop
+
+STARTUP, 
+	open(ttchn,O,"tt:")
+	; initialize Synergy Windowing System with max 5 windows
+	xcall w_init(1, ttchn, 5)
+	
+
+PROCESS,
+	; Create a new window for the application's main menu
+	xcall CREATE_WINDOW(menu_wndid, "WND4", height, width, 9, 30, "Order Processing Menu")
+	; Display Options 
+	xcall DISPLAY_TEXT(menu_wndid, 2, 4, "1. Add an Order")
+	xcall DISPLAY_TEXT(menu_wndid, 4, 4, "2. View Last Order")
+	xcall DISPLAY_TEXT(menu_wndid, 6, 4, "3. Exit")
+
+	do
+	begin
+		; Display Message that prompts to select one of available options
+		xcall DISPLAY_TEXT(menu_wndid, 8, 4, "Choose an option:")
+		; Use Wait Key to prompt the user to select a menu entry
+		xcall WAIT_KEY(menu_wndid, 0, 1, var_input)
+
+		; Code to decode which character the user typed
+		using var_input select
+		("1"),
+			xcall DISPLAY_MESSAGE("You chose 1", wndid2, wndname1, width, col, wndname1)
+			
+			
+		("2"),
+			
+			xcall DISPLAY_MESSAGE("You chose 2", wndid2, wndname2, width, col, wndname2) 
+		(),
+			xcall DISPLAY_MESSAGE("Invalid choice", wndid2, "INVALID", width, col) 
+			
+		endusing
+		
+	end
+	until(var_input.eqs."3")
+
+	; Terminate the program
+	xcall DELETE_WINDOW(menu_wndid)
+
+	return
+
+SHUTDOWN,
+	xcall w_exit
+	close(ttchn)
+	
+
+stop
+
+endmain
