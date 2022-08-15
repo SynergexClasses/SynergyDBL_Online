@@ -1,0 +1,31 @@
+subroutine DISPLAY_MESSAGE
+	; accept one arg: text to be displayed in window
+	required in text ,a
+	required inout w_id ,i
+	required in w_name ,a
+	optional inout width ,i
+	optional inout col ,i
+	optional in w_title ,a
+	optional inout w_char, a
+	endparams
+
+	.include "WND:windows.def"
+
+proc
+	width = ^size(text) + 2
+	col = 80 / 2
+	; create and place window
+	xcall w_proc(WP_CREATE, w_id, w_name, 3, width, WP_PLACE, w_id, 3, col)
+	; place text on screen
+	xcall w_disp(w_id, WD_POS, 1, 1, text)
+
+	; Pause and wait
+	xcall w_disp(w_id, WD_MOVE, 0, 0)
+	; allow the user to acknowledge
+	xcall w_disp(w_id, WD_READS, w_char)
+
+	xcall w_proc(WP_DELETE, w_id)
+
+	xreturn
+			
+endsubroutine

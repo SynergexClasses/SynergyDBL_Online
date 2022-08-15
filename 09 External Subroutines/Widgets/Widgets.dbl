@@ -1,0 +1,46 @@
+
+;;; <summary>
+;;; The main entry point for the application.
+;;; </summary>
+main Widgets
+
+	.include "WND:windows.def"
+	.include "INC:header.def" 
+	.include "INC:detail.def"
+
+	record 
+		detail	,strDetail
+		term_ch	,i4, 1 ;Terminal Channel Number
+		winchar	,a1	;Input for menu options
+		wndid	,i4 ;Window ID
+		width ,i2 ,30 ;Window Width
+		col ,i2 ,10
+		w_title ,a10 ;Window Title
+	endrecord
+
+
+proc
+	call STARTUP
+	call PROCESS
+	call SHUTDOWN
+	stop
+
+STARTUP, 
+	open(term_ch,o,"tt:")
+	xcall w_init(1,term_ch, 5) ;Initialize Synergy Windowing System with max 5 windows
+	
+
+PROCESS,
+	;3 Test cases for displaying a message
+	xcall DISPLAY_MESSAGE("Do you accept?", wndid, "Message1", width, col, "Message1", winchar)
+	xcall DISPLAY_MESSAGE("Do you decline?", wndid, "Message2", width, col, "Message2", winchar)
+	xcall DISPLAY_MESSAGE("Are you ready?", wndid, "Message3", width, col, "Message3", winchar)
+
+SHUTDOWN,
+	xcall w_exit
+	close(term_ch)
+	
+
+stop
+
+endmain

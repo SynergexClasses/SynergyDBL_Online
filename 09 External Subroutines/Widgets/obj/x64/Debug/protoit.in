@@ -1,0 +1,1 @@
+ -platform=x64 -qrntcompat=12010100 -out=Widgets -expdir="C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\09 External Subroutines\Widgets\obj\proto" "C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\09 External Subroutines\Widgets\display_message.dbl" "C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\09 External Subroutines\Widgets\Widgets.dbl"
