@@ -1,0 +1,21 @@
+;;; <summary>
+;;; Clear the box
+;;; </summary>
+;;; <param name="a_wndid">Window ID</param>
+;;; <param name="a_row_from">Row to clear from</param>
+;;; <param name="a_col_from">Column to clear from</param>
+;;; <param name="a_row_to">Row to clear to</param>
+;;; <param name="a_col_to">Column to clear to</param>
+subroutine CLEAR_BOX
+	required inout a_wndid ,i
+	required in a_row_from ,d
+	required in a_col_from ,d
+	required in a_row_to ,d
+	required in a_col_to ,d
+	endparams
+proc
+	; Clear the box by displaying the correct number of space characters over each line in the box that you want to clear
+	xcall DISPLAY_TEXT(a_wndid,a_row_from,a_col_from,"            ")
+	xreturn
+
+endsubroutine
