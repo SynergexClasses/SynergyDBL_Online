@@ -1,0 +1,79 @@
+
+;;; <summary>
+;;; The main entry point for the application.
+;;; </summary>
+main Widgets
+
+	.include "WND:windows.def"
+	.include "INC:header.def"
+	.include "INC:detail.def"
+
+	record
+		system_date     ,a20
+		year          ,d4 @system_date
+		month         ,d2 @system_date+4
+		day           ,d2 @system_date+6
+	endrecord
+
+	record
+		termch          ,i4 ,1      ;Terminal channel number
+		char            ,a1         ;Temporary variable used to accept key press
+		msgid           ,i4         ;Message window ID
+	endrecord
+
+proc
+
+	call startup
+	call process
+	call shutdown
+
+	stop
+
+;----------------------------------------
+;Application startup processing
+;
+Startup,
+
+	system_date = %datetime                         ;Assign current date
+
+	open(termch,i,"tt:")                            ;Open terminal channel
+	xcall flags(7004020,1)                          ;Setup environment
+.ifndef D_GUI
+	display(termch,$scr_clr(screen))                ;Clear screen
+.endc
+
+	xcall w_init(1,termch,5)                        ;Initialize windowing system
+	xcall w_caption(WC_SET,"My First Synergy Application")  ;Set caption
+
+	return
+
+;----------------------------------------
+;Application shutdown processing
+;
+Shutdown,
+
+	xcall w_exit                                    ;Close windowing system
+
+.ifndef D_GUI
+	display(termch,$scr_clr(screen))                ;Clear screen
+.endc
+	close termch                                    ;Close terminal
+
+	return
+
+;----------------------------------------
+;Main application processing
+;
+Process,
+
+	xcall w_proc(WP_CREATE,msgid,"MESSAGE",4,25,    ;Create window
+	&	WP_PLACE,msgid,9,30)               ;Place window
+	xcall w_disp(msgid,WD_POS,2,8,"Hello World!",   ;Display text
+	&	WD_POS,3,3,"The date is ",
+	&	^a(month),"/",^a(day),"/",^a(year))
+	xcall w_disp(msgid,WD_ACCEPT,char)              ;Wait for key
+	xcall w_proc(WP_DELETE,msgid)                   ;Delete window
+
+	return
+
+endmain
