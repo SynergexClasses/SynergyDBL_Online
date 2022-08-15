@@ -1,1 +1,0 @@
--platform=x64 -qimpdbp="C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\obj\proto\readability.dbp" -qdebug=1 -qalign -T -qrntcompat=12010100 -qdbg:dep -o VSDBLOBJDIR:Readability.dbo "C:\Users\danie\Desktop\Synergex\SynergyDBL\Readability-210429-064833\Readability\Program.dbl" 
