@@ -1,0 +1,12 @@
+structure strDetail ;33 bytes
+	od_number ,d6
+	od_item ,d4
+	od_part ,a10
+	od_qty ,d5
+	od_unit_price ,d8.2
+endstructure
+
+; comment these out for step 5 of Module 5 (Exercise 4 - Dynamic Memory)
+;record
+	;detail ,strDetail
+;endrecord

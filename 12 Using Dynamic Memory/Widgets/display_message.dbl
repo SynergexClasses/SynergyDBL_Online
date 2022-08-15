@@ -1,0 +1,23 @@
+subroutine DISPLAY_MESSAGE
+	; accept one arg: text to be displayed in window
+	required in text ,a
+	required inout w_id ,i
+	required in w_name ,a
+	optional inout width ,i
+	optional inout col ,i
+	optional inout w_title ,a
+	optional inout w_char, a
+	endparams
+
+	.include "WND:windows.def"
+
+proc
+	width = ^size(text) + 2
+	col = 80 / 2
+	; Subroutine 2
+	xcall CREATE_WINDOW(w_id, w_name, 15, width, 1, col, w_title)
+	; Subroutine 3 (row, col)
+	xcall DISPLAY_TEXT(w_id, 2, 2, text)
+	xreturn
+
+endsubroutine

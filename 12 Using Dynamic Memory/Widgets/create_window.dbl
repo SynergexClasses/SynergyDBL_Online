@@ -1,0 +1,30 @@
+;;; <summary>
+;;; Creates a Synergy Window
+;;; </summary>
+;;; <param name="w_id">Returned ID of the created window</param>
+;;; <param name="w_name">Name of window to create</param>
+;;; <param name="w_height">Height of window</param>
+;;; <param name="w_width">Width of window</param>
+;;; <param name="screen_row">Screen row for window placement</param>
+;;; <param name="screen_col">Screen column for window placement</param>
+;;; <param name="w_title">Optional title for window</param>
+subroutine CREATE_WINDOW
+	required inout w_id ,i
+	required in w_name ,a
+	required in w_height ,n
+	required in w_width ,n
+	required in screen_row ,n
+	required in screen_col ,n
+	optional in w_title ,a
+	endparams
+	
+	.include "WND:windows.def"
+proc
+	; create the window
+	xcall w_proc(WP_CREATE, w_id, w_name, w_height, w_width, WP_PLACE, w_id, screen_row, screen_col)
+	; if window title is passed
+	if(^passed(w_title))
+		xcall w_brdr(w_id, WB_TITLE, w_title)
+	
+	xreturn
+endsubroutine
