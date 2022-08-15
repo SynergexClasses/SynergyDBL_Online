@@ -1,0 +1,4 @@
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\Widgets\obj\x64\Debug\Widgets.synproj.CoreCompileInputs.cache
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\Widgets\Debug\x64\Widgets.dbr
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\Widgets\Debug\x64\widgets.dbp
+C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\Widgets\obj\x64\Debug\Widgets.dbr

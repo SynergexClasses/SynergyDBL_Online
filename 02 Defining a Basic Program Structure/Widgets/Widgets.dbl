@@ -1,0 +1,11 @@
+
+;;; <summary>
+;;; The main entry point for the application.
+;;; </summary>
+main Widgets
+
+proc
+
+stop
+
+endmain
