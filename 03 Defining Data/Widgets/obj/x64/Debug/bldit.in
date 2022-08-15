@@ -1,0 +1,1 @@
+-platform=x64 -qimpdbp="C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\03 Defining Data\Widgets\obj\proto\widgets.dbp" -qdebug=1 -qalign -T -qrntcompat=12010100 -qdbg:dep -o VSDBLOBJDIR:Widgets.dbo "C:\Users\danie\Desktop\Synergex\SynergyDBL\Solutions\03 Defining Data\Widgets\Widgets.dbl" 
